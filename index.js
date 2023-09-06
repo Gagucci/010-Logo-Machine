@@ -7,4 +7,7 @@ class Logo {
     this.textEl = "";
     this.shapeEl = "";
   }
+  render() {
+    return "";
+  }
 }
