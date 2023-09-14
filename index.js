@@ -2,6 +2,7 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 const { Circle, Square, Triangle } = require("./lib/shapes");
 
+// class to create logo
 class Logo {
   constructor() {
     this.textEl = "";
@@ -12,7 +13,7 @@ class Logo {
       ${this.shapeEl} ${this.textEl} 
       </svg>`;
   }
-
+  // function to add text to logo. Sets different text positions based on shape chosen.
   addTextEl(text, textColor, shape) {
     if (shape === "Circle") {
       this.textEl += `
@@ -24,11 +25,12 @@ class Logo {
         `;
     } else if (shape === "Triangle") {
       this.textEl += `
-        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="${textColor}" font-family="sans-serif" font-size="50px">${text}</text>
+        <text x="75" y="95" dominant-baseline="middle" text-anchor="middle" fill="${textColor}" font-family="sans-serif" font-size="25px">${text}</text>
         `;
     }
     return;
   }
+  // function to add user's chosen shape to logo
   addShapeEl(shape) {
     this.shapeEl += shape.render();
   }
@@ -84,7 +86,7 @@ function init() {
         break;
     }
     logo.addTextEl(answers.text, answers.textColor, answers.shape);
-
+    // use of filesystem to create logo.svg file
     fs.writeFile("logo.svg", logo.render(), (err) => {
       if (err) throw err;
       console.log("Logo created!");
